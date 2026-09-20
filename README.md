@@ -235,3 +235,8 @@ DB：
 | YouTube Data API | 不採用 | YouTubeの動画検索やタイトル、チャンネル情報などの取得が可能だが、曲は検索ではなくあらかじめ登録するため不採用 |
 | Neon | 採用 | 無料枠があり、ミニアプリ開発でも使用した経験があるため採用 |
 | Render | 採用 | ミニアプリ開発で使用した経験があるため採用 |
+
+## 11. 画面遷移図
+
+- 画面遷移図
+https://www.figma.com/design/YYUaPYgiLYS9dxHLpxletB/GaMu?node-id=0-1&t=TRCmF5BRlBVtMELN-1
