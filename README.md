@@ -244,3 +244,9 @@ DB：
 
 - 画面遷移図
 https://www.figma.com/design/YYUaPYgiLYS9dxHLpxletB/GaMu?node-id=0-1&t=TRCmF5BRlBVtMELN-1
+
+
+## 12. ER図
+
+- ER図
+https://dbdiagram.io/d/6aaf934d6d586d617e78614b
