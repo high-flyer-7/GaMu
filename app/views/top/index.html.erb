@@ -17,8 +17,8 @@
 
       <div class="grid grid-cols-2 gap-5">
 
-        <button
-          class="
+        <%= link_to player_path(mood_id: @mood.id),
+          class: "
             flex flex-col items-center justify-center
             rounded-2xl p-10
             border border-[rgba(96,216,168,0.25)]
@@ -26,16 +26,15 @@
             transition
             hover:scale-[1.02]
             active:scale-[0.98]
-          "
-        >
+          " do %>
           <span class="text-5xl mb-4">
             🌿
           </span>
 
           <span class="text-xl font-semibold text-[#60d8a8]">
-            リラックス
+            落ち着いた
           </span>
-        </button>
+        <% end %>
 
       </div>
 

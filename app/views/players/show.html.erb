@@ -1,0 +1,23 @@
+<div class="min-h-screen bg-[#08080f] text-[#e8e8f0] flex flex-col">
+
+  <%= render "shared/header" %>
+
+  <main class="flex-1 flex items-center justify-center px-6 py-16">
+    <section class="w-full max-w-5xl">
+
+
+    <iframe
+      class="w-full aspect-video"
+      src="https://www.youtube.com/embed/<%= @youtube_video.video_id %>"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+
+    </section>
+  </main>
+
+  <%= render "shared/footer" %>
+
+</div>
