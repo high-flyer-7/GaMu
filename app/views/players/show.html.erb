@@ -5,15 +5,149 @@
   <main class="flex-1 flex items-center justify-center px-6 py-16">
     <section class="w-full max-w-5xl">
 
+      <div
+        data-controller="youtube-player"
+        data-youtube-player-playlist-value="<%= @playlist.to_json %>"
+      >
+        <iframe
+          data-youtube-player-target="player"
+          class="w-full aspect-video"
+          src="https://www.youtube.com/embed/<%= @current_track[:video_id] %>?enablejsapi=1&playsinline=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
 
-    <iframe
-      class="w-full aspect-video"
-      src="https://www.youtube.com/embed/<%= @youtube_video.video_id %>"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
+
+      <!-- 楽曲情報 -->
+      <div class="mt-5 flex flex-col items-center gap-3">
+
+        <!-- ゲームタイトル -->
+        <div class="flex items-center gap-2">
+          <span class="text-xl">
+            🎮
+          </span>
+
+          <p
+            data-youtube-player-target="gameTitle"
+            class="text-sm font-medium text-[#8b8b9c]"
+          >
+            <%= @current_track[:game_title] %>
+          </p>
+        </div>
+
+        <!-- 楽曲名 -->
+        <div class="flex items-center gap-3">
+          <span class="text-xl text-[#60d8a8]">
+            ♪
+          </span>
+
+          <h2
+            data-youtube-player-target="trackTitle"
+            class="text-xl font-semibold text-[#e8e8f0]"
+          >
+            <%= @current_track[:title] %>
+          </h2>
+        </div>
+        
+        <!-- 操作ボタン -->
+        <div class="mt-4 flex items-start justify-center">
+
+          <!-- 左側 -->
+          <div class="flex w-[260px] justify-end gap-2">
+            <button
+              type="button"
+              class="
+                h-11 w-[120px]
+                rounded-lg
+                bg-[#151522]
+                border border-white/5
+                text-sm font-medium text-[#b8b8c8]
+                transition
+                hover:bg-[#202030]
+                active:scale-95
+                whitespace-nowrap
+              "
+            >
+              リピート OFF
+            </button>
+
+            <button
+              type="button"
+              data-action="click->youtube-player#previousTrack"
+              class="
+                h-11 px-5
+                rounded-lg
+                bg-[#151522]
+                border border-white/5
+                text-sm font-semibold text-[#e8e8f0]
+                transition
+                hover:bg-[#202030]
+                active:scale-95
+                whitespace-nowrap
+              "
+            >
+              ◀◀ 前の曲
+            </button>
+          </div>
+
+          <!-- 中央 -->
+          <div class="mx-2 flex flex-col items-center gap-2">
+            <button
+              type="button"
+              data-youtube-player-target="playButton"
+              data-action="click->youtube-player#togglePlayback"
+              class="
+                h-11 px-7
+                rounded-lg
+                bg-[#60d8a8]
+                text-sm font-bold text-[#07110d]
+                transition
+                hover:bg-[#70e4b7]
+                active:scale-95
+                whitespace-nowrap
+              "
+            >
+              Ⅱ 停止
+            </button>
+
+            <span
+              class="
+                rounded-full
+                bg-[rgba(96,216,168,0.08)]
+                border border-[rgba(96,216,168,0.20)]
+                px-4 py-1
+                text-sm font-medium text-[#60d8a8]
+              "
+            >
+              落ち着いた
+            </span>
+          </div>
+
+          <!-- 右側 -->
+          <div class="flex w-[260px] justify-start gap-2">
+            <button
+              type="button"
+              data-action="click->youtube-player#nextTrack"
+              class="
+                h-11 px-5
+                rounded-lg
+                bg-[#151522]
+                border border-white/5
+                text-sm font-semibold text-[#e8e8f0]
+                transition
+                hover:bg-[#202030]
+                active:scale-95
+                whitespace-nowrap
+              "
+            >
+              次の曲 ▶▶
+            </button>
+          </div>
+
+        </div>
+      </div>
 
     </section>
   </main>
