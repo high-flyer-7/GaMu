@@ -1,0 +1,77 @@
+<div class="min-h-screen bg-[#08080f] text-[#e8e8f0] flex flex-col">
+
+  <%= render "shared/header" %>
+
+  <main class="flex-1">
+    <div class="max-w-2xl mx-auto px-6 py-16 min-h-[calc(100vh-144px)]">
+
+      <h1
+        class="
+          text-5xl
+          font-semibold
+          mb-10
+          text-center
+          font-['Fraunces',serif]
+        "
+      >
+        プライバシーポリシー
+      </h1>
+
+      <div
+        class="
+          rounded-2xl
+          p-8
+          space-y-6
+          text-sm
+          leading-relaxed
+          bg-[#13131f]
+          border border-[#1e1e30]
+          text-[#8888a8]
+        "
+      >
+        <section>
+          <h2
+            class="
+              text-2xl
+              font-semibold
+              mb-2
+              text-[#e8e8f0]
+              font-['Fraunces',serif]
+            "
+          >
+            外部サービスへの情報送信について
+          </h2>
+
+          <p class="text-xl">
+            GaMuでは、YouTubeの埋め込み機能を利用しています。<br>
+            そのため、本サービスの利用時に、端末情報やCookie等の情報が
+            GoogleまたはYouTubeに送信される場合があります。
+          </p>
+        </section>
+
+        <section>
+          <h2
+            class="
+              text-2xl
+              font-semibold
+              mb-2
+              text-[#e8e8f0]
+              font-['Fraunces',serif]
+            "
+          >
+            情報の取扱いについて
+          </h2>
+
+          <p class="text-xl">
+            これらの情報の取扱いについては、
+            Googleのプライバシーポリシーをご確認ください。
+          </p>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <%= render "shared/footer" %>
+
+</div>
