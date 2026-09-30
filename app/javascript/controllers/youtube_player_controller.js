@@ -101,5 +101,9 @@ export default class extends Controller {
     ) {
       this.playButtonTarget.textContent = "▶ 再生"
     }
+
+    if (event.data === YT.PlayerState.ENDED) {
+        this.nextTrack()
+      }
   }
 }
