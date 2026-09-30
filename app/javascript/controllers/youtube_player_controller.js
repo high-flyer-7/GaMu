@@ -5,7 +5,8 @@ export default class extends Controller {
     "player",
     "playButton",
     "gameTitle",
-    "trackTitle"
+    "trackTitle",
+    "repeatButton"
   ]
 
   static values = {
@@ -14,6 +15,7 @@ export default class extends Controller {
 
   connect() {
     this.currentIndex = 0
+    this.repeatEnabled = false
     this.loadYouTubeAPI()
   }
 
@@ -46,6 +48,41 @@ export default class extends Controller {
         onStateChange: (event) => this.onStateChange(event)
       }
     })
+  }
+
+  // リピートボタン押下
+  toggleRepeat() {
+    this.repeatEnabled = !this.repeatEnabled
+
+    if (this.repeatEnabled) {
+      this.repeatButtonTarget.textContent = "🔁 リピート ON"
+
+      this.repeatButtonTarget.classList.remove(
+        "bg-[#151522]",
+        "text-[#b8b8c8]",
+        "border-white/5"
+      )
+
+      this.repeatButtonTarget.classList.add(
+        "bg-[rgba(96,216,168,0.08)]",
+        "text-[#60d8a8]",
+        "border-[rgba(96,216,168,0.25)]"
+      )
+    } else {
+      this.repeatButtonTarget.textContent = "🔁 リピート OFF"
+
+      this.repeatButtonTarget.classList.remove(
+        "bg-[rgba(96,216,168,0.08)]",
+        "text-[#60d8a8]",
+        "border-[rgba(96,216,168,0.25)]"
+      )
+
+      this.repeatButtonTarget.classList.add(
+        "bg-[#151522]",
+        "text-[#b8b8c8]",
+        "border-white/5"
+      )
+    }
   }
 
   // 再生ボタン動作
@@ -102,8 +139,15 @@ export default class extends Controller {
       this.playButtonTarget.textContent = "▶ 再生"
     }
 
+    // 楽曲終了時の判定
     if (event.data === YT.PlayerState.ENDED) {
+      // リピートがONなら最初から、OFFなら次の曲再生
+      if (this.repeatEnabled) {
+        this.player.seekTo(0)
+        this.player.playVideo()
+      } else {
         this.nextTrack()
       }
+    }
   }
 }
