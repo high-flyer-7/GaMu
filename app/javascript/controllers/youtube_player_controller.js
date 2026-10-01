@@ -96,6 +96,20 @@ export default class extends Controller {
     }
   }
 
+  // 前の曲ボタン
+  previousTrack() {
+    const currentTime = this.player.getCurrentTime()
+    if (currentTime > 2 || this.currentIndex === 0) {
+      this.player.seekTo(0)
+      return
+    }
+    this.currentIndex -= 1
+    const previousTrack = this.playlistValue[this.currentIndex]
+    this.player.loadVideoById(previousTrack.video_id)
+    this.trackTitleTarget.textContent = previousTrack.title
+    this.gameTitleTarget.textContent = previousTrack.game_title
+  }
+
   // 次の曲動作（最後の曲で押下した場合は再シャッフル実施）
   nextTrack() {
   if (this.currentIndex >= this.playlistValue.length - 1) {
