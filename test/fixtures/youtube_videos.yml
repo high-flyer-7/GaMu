@@ -2,12 +2,7 @@
 
 one:
   track: one
-  video_id: abc123xyz01
+  video_id: SlUYv-CUoOo
   priority: 1
   is_active: false
 
-two:
-  track: two
-  video_id: def456xyz02
-  priority: 1
-  is_active: false
