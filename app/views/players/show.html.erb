@@ -9,6 +9,23 @@
         data-controller="youtube-player"
         data-youtube-player-playlist-value="<%= @playlist.to_json %>"
       >
+      
+        <!-- 曲調 -->
+        <div class="mb-3">
+          <span
+            class="
+              inline-flex items-center
+              rounded-full
+              px-3 py-1
+              text-sm
+              bg-[rgba(96,216,168,0.08)]
+              text-[#60d8a8]
+              border border-[rgba(96,216,168,0.25)]
+            "
+          >
+            🌿 <%= @mood.name %>
+          </span>
+        </div>
         <iframe
           data-youtube-player-target="player"
           class="w-full aspect-video"
@@ -113,18 +130,6 @@
             >
               Ⅱ 停止
             </button>
-
-            <span
-              class="
-                rounded-full
-                bg-[rgba(96,216,168,0.08)]
-                border border-[rgba(96,216,168,0.20)]
-                px-4 py-1
-                text-sm font-medium text-[#60d8a8]
-              "
-            >
-              落ち着いた
-            </span>
           </div>
 
           <!-- 右側 -->
@@ -146,8 +151,31 @@
             >
               次の曲 ▶▶
             </button>
-          </div>
 
+              <!-- 音量 -->
+              <div class="flex items-center gap-2">
+                  <button
+                    type="button"
+                    data-action="click->youtube-player#toggleMute"
+                    data-youtube-player-target="muteButton"
+                    class="text-[#8888a8]"
+                  >
+                    🔊
+                  </button>
+
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="20"
+                  data-youtube-player-target="volumeBar"
+                  data-action="input->youtube-player#changeVolume"
+                  class="w-24 cursor-pointer accent-[#60d8a8]"
+                >
+
+              </div>
+          </div>
         </div>
       </div>
 

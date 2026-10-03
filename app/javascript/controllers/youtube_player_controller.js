@@ -6,7 +6,9 @@ export default class extends Controller {
     "playButton",
     "gameTitle",
     "trackTitle",
-    "repeatButton"
+    "repeatButton",
+    "volumeBar",
+    "muteButton"
   ]
 
   static values = {
@@ -43,6 +45,7 @@ export default class extends Controller {
     this.player = new YT.Player(this.playerTarget, {
       events: {
       onReady: (event) => {
+        event.target.setVolume(20)
         event.target.playVideo()
       },
         onStateChange: (event) => this.onStateChange(event)
@@ -122,6 +125,36 @@ export default class extends Controller {
     this.player.loadVideoById(nextTrack.video_id)
     this.trackTitleTarget.textContent = nextTrack.title
     this.gameTitleTarget.textContent = nextTrack.game_title
+  }
+
+  // ミュートボタン
+  toggleMute() {
+    if (this.player.isMuted()) {
+      this.player.unMute()
+      this.muteButtonTarget.textContent = "🔊"
+      this.volumeBarTarget.value = this.player.getVolume()
+      const volume = this.player.getVolume()
+      if (volume === 0) {
+        this.player.setVolume(10)
+        this.volumeBarTarget.value = 10
+      }
+    } else {
+      this.player.mute()
+      this.muteButtonTarget.textContent = "🔇"
+      this.volumeBarTarget.value = 0
+    }
+  }
+  // 音量バー
+  changeVolume() {
+    const volume = Number(this.volumeBarTarget.value)
+    this.player.setVolume(volume)
+    if (volume === 0) {
+      this.player.mute()
+      this.muteButtonTarget.textContent = "🔇"
+    } else {
+      this.player.unMute()
+      this.muteButtonTarget.textContent = "🔊"
+    }
   }
 
   // 楽曲シャッフル
