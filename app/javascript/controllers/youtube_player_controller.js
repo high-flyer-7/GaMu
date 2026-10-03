@@ -45,7 +45,25 @@ export default class extends Controller {
     this.player = new YT.Player(this.playerTarget, {
       events: {
       onReady: (event) => {
-        event.target.setVolume(20)
+        // ブラウザから前回の音量を取得して設定
+        const savedVolume = localStorage.getItem("gamuVolume")
+        const volume = savedVolume === null
+          ? 20
+          : Number(savedVolume)
+
+        // ブラウザから前回のミュート状態を取得して設定
+        const isMuted = localStorage.getItem("isMuted") === "true"
+        if (isMuted) {
+          event.target.mute()
+          this.muteButtonTarget.textContent = "🔇"
+          this.volumeBarTarget.value = 0
+        } else {
+          event.target.unMute()
+          this.muteButtonTarget.textContent = "🔊"
+          this.volumeBarTarget.value = volume
+        }
+        event.target.setVolume(volume)
+        this.volumeBarTarget.classList.remove("opacity-0")
         event.target.playVideo()
       },
         onStateChange: (event) => this.onStateChange(event)
@@ -129,28 +147,39 @@ export default class extends Controller {
 
   // ミュートボタン
   toggleMute() {
+    const volume = this.player.getVolume()
     if (this.player.isMuted()) {
       this.player.unMute()
       this.muteButtonTarget.textContent = "🔊"
       this.volumeBarTarget.value = this.player.getVolume()
-      const volume = this.player.getVolume()
       if (volume === 0) {
         this.player.setVolume(10)
         this.volumeBarTarget.value = 10
       }
+      // ミュート状態をブラウザに保存
+      localStorage.setItem("isMuted", "false")
     } else {
       this.player.mute()
       this.muteButtonTarget.textContent = "🔇"
       this.volumeBarTarget.value = 0
+        // ミュート状態をブラウザに保存
+        localStorage.setItem("isMuted", "true")
     }
+    // 音量をブラウザに保存
+    localStorage.setItem("gamuVolume", volume)
   }
   // 音量バー
   changeVolume() {
     const volume = Number(this.volumeBarTarget.value)
     this.player.setVolume(volume)
+    // 音量をブラウザに保存
+    localStorage.setItem("gamuVolume", volume)
+
     if (volume === 0) {
       this.player.mute()
       this.muteButtonTarget.textContent = "🔇"
+      // ミュート状態をブラウザに保存
+      localStorage.setItem("isMuted", "true")
     } else {
       this.player.unMute()
       this.muteButtonTarget.textContent = "🔊"
