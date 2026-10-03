@@ -5,7 +5,6 @@ class PlayersController < ApplicationController
     @playlist = @mood.tracks
                      .includes(:game, :youtube_videos)
                      .filter_map do |track|
-
       youtube_video = track.youtube_videos
                            .select(&:is_active)
                            .min_by(&:priority)

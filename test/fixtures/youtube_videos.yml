@@ -2,12 +2,12 @@
 
 one:
   track: one
-  video_id: MyString
+  video_id: abc123xyz01
   priority: 1
   is_active: false
 
 two:
   track: two
-  video_id: MyString
+  video_id: def456xyz02
   priority: 1
   is_active: false
