@@ -1,7 +1,7 @@
 class AddConstraintsToTables < ActiveRecord::Migration[8.1]
   def change
     add_index :track_moods,
-              [:track_id, :mood_id],
+              [ :track_id, :mood_id ],
               unique: true,
               name: "index_track_moods_on_track_id_and_mood_id"
 
