@@ -1,8 +1,19 @@
 # Omakase Ruby styling for Rails
 inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+# Fat Controller / Fat Model の検出
+Metrics/ClassLength:
+  Enabled: true
+  Max: 100
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 20
+
+Metrics/AbcSize:
+  Enabled: true
+  Max: 17
+
+Metrics/CyclomaticComplexity:
+  Enabled: true
+  Max: 7
