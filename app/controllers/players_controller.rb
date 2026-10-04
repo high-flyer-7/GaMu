@@ -13,15 +13,18 @@ class PlayersController < ApplicationController
     @current_track = @playlist.first
   end
 
+  private
+
   def build_playlist(mood)
     mood.tracks
+        .joins(:youtube_videos)
+        .where(youtube_videos: { is_active: true })
         .includes(:game, :youtube_videos)
+        .distinct
         .filter_map do |track|
       youtube_video = track.youtube_videos
                            .select(&:is_active)
                            .min_by(&:priority)
-
-      next unless youtube_video
 
       {
         track_id: track.id,
