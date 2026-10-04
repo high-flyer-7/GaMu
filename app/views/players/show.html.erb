@@ -10,24 +10,24 @@
         data-youtube-player-playlist-value="<%= @playlist.to_json %>"
       >
 
-        <!-- 曲調 -->
-        <div class="mb-3">
-          <span
-            class="
-              inline-flex items-center
-              rounded-full
-              px-3 py-1
-              text-sm
-              bg-[rgba(96,216,168,0.08)]
-              text-[#60d8a8]
-              border border-[rgba(96,216,168,0.25)]
-            "
-          >
-            🌿 <%= @mood.name %>
-          </span>
-        </div>
-
         <div class="max-w-3xl mx-auto">
+          <!-- 曲調 -->
+          <div class="mb-3">
+            <span
+              class="
+                inline-flex items-center
+                rounded-full
+                px-3 py-1
+                text-sm
+                bg-[rgba(96,216,168,0.08)]
+                text-[#60d8a8]
+                border border-[rgba(96,216,168,0.25)]
+              "
+            >
+              🌿 <%= @mood.name %>
+            </span>
+          </div>
+
           <iframe
             data-youtube-player-target="player"
             class="w-full aspect-video"
