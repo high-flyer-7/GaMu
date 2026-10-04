@@ -2,9 +2,21 @@ class PlayersController < ApplicationController
   def show
     @mood = Mood.find(params[:mood_id])
 
-    @playlist = @mood.tracks
-                     .includes(:game, :youtube_videos)
-                     .filter_map do |track|
+    @playlist = build_playlist(@mood)
+
+    # 再生できる楽曲がない場合
+    if @playlist.empty?
+      redirect_to root_path, alert: "再生できる楽曲がありません"
+      return
+    end
+
+    @current_track = @playlist.first
+  end
+
+  def build_playlist(mood)
+    mood.tracks
+        .includes(:game, :youtube_videos)
+        .filter_map do |track|
       youtube_video = track.youtube_videos
                            .select(&:is_active)
                            .min_by(&:priority)
@@ -19,13 +31,5 @@ class PlayersController < ApplicationController
       }
     end
     .shuffle
-
-    # 再生できる楽曲がない場合
-    if @playlist.empty?
-      redirect_to root_path, alert: "再生できる楽曲がありません"
-      return
-    end
-
-    @current_track = @playlist.first
   end
 end
