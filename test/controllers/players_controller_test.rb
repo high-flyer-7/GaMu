@@ -51,5 +51,4 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
     assert_equal "再生できる楽曲がありません", flash[:alert]
   end
-
 end
