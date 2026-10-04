@@ -2,7 +2,7 @@
 
   <%= render "shared/header" %>
 
-  <main class="flex-1 flex items-center justify-center px-6 py-16">
+  <main class="flex-1 flex items-center justify-center px-6 py-8">
     <section class="w-full max-w-5xl">
 
       <div
@@ -10,32 +10,34 @@
         data-youtube-player-playlist-value="<%= @playlist.to_json %>"
       >
 
-        <!-- 曲調 -->
-        <div class="mb-3">
-          <span
-            class="
-              inline-flex items-center
-              rounded-full
-              px-3 py-1
-              text-sm
-              bg-[rgba(96,216,168,0.08)]
-              text-[#60d8a8]
-              border border-[rgba(96,216,168,0.25)]
-            "
-          >
-            🌿 <%= @mood.name %>
-          </span>
-        </div>
-        <iframe
-          data-youtube-player-target="player"
-          class="w-full aspect-video"
-          src="https://www.youtube.com/embed/<%= @current_track[:video_id] %>?enablejsapi=1&playsinline=1"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+        <div class="max-w-3xl mx-auto">
+          <!-- 曲調 -->
+          <div class="mb-3">
+            <span
+              class="
+                inline-flex items-center
+                rounded-full
+                px-3 py-1
+                text-sm
+                bg-[rgba(96,216,168,0.08)]
+                text-[#60d8a8]
+                border border-[rgba(96,216,168,0.25)]
+              "
+            >
+              🌿 <%= @mood.name %>
+            </span>
+          </div>
 
+          <iframe
+            data-youtube-player-target="player"
+            class="w-full aspect-video"
+            src="https://www.youtube.com/embed/<%= @current_track[:video_id] %>?enablejsapi=1&playsinline=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
 
       <!-- 楽曲情報 -->
       <div class="mt-5 flex flex-col items-center gap-3">
