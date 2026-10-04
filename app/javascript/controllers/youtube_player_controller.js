@@ -68,7 +68,8 @@ export default class extends Controller {
         this.volumeBarTarget.classList.remove("opacity-0")
         event.target.playVideo()
       },
-        onStateChange: (event) => this.onStateChange(event)
+        onStateChange: (event) => this.onStateChange(event),
+        onError: (event) => this.onPlayerError(event)
       }
     })
   }
@@ -224,6 +225,13 @@ export default class extends Controller {
       } else {
         this.nextTrack()
       }
+    }
+  }
+
+  // 再生動画エラー処理
+  onPlayerError(event) {
+    if (event.data === 101 || event.data === 150) {
+      this.nextTrack()
     }
   }
 
