@@ -20,6 +20,12 @@ class PlayersController < ApplicationController
     end
     .shuffle
 
+    # 再生できる楽曲がない場合
+    if @playlist.empty?
+      redirect_to root_path, alert: "再生できる楽曲がありません"
+      return
+    end
+
     @current_track = @playlist.first
   end
 end
