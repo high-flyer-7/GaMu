@@ -16,7 +16,9 @@ export default class extends Controller {
   }
 
   connect() {
+    // 楽曲をランダム再生リストの先頭にする
     this.currentIndex = 0
+    this.updateTrackInfo(this.playlistValue[this.currentIndex])
     this.repeatEnabled = false
     this.loadYouTubeAPI()
   }
@@ -127,8 +129,7 @@ export default class extends Controller {
     this.currentIndex -= 1
     const previousTrack = this.playlistValue[this.currentIndex]
     this.player.loadVideoById(previousTrack.video_id)
-    this.trackTitleTarget.textContent = previousTrack.title
-    this.gameTitleTarget.textContent = previousTrack.game_title
+    this.updateTrackInfo(previousTrack)
   }
 
   // 次の曲動作（最後の曲で押下した場合は再シャッフル実施）
@@ -141,8 +142,7 @@ export default class extends Controller {
   }
     const nextTrack = this.playlistValue[this.currentIndex]
     this.player.loadVideoById(nextTrack.video_id)
-    this.trackTitleTarget.textContent = nextTrack.title
-    this.gameTitleTarget.textContent = nextTrack.game_title
+    this.updateTrackInfo(nextTrack)
   }
 
   // ミュートボタン
@@ -225,5 +225,11 @@ export default class extends Controller {
         this.nextTrack()
       }
     }
+  }
+
+  //再生楽曲の情報更新
+  updateTrackInfo(track) {
+    this.trackTitleTarget.textContent = track.title
+    this.gameTitleTarget.textContent = track.game_title
   }
 }
