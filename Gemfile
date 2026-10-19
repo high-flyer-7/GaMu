@@ -19,7 +19,7 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem "json", "< 3"
+gem "json", "< 4"
 
 gem "csv"
 
